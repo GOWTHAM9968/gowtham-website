@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gowtham Private Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0d1117;
+    color:white;
+}
+
+.login-page{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+    background:#161b22;
+    padding:30px;
+    border-radius:10px;
+    width:320px;
+    text-align:center;
+}
+
+.login-box h2{
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:5px;
+}
+
+.login-box button{
+    width:100%;
+    padding:10px;
+    background:#238636;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.dashboard{
+    display:none;
+}
+
+header{
+    background:#161b22;
+    padding:20px;
+    text-align:center;
+}
+
+nav{
+    margin-top:10px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 10px;
+}
+
+.container{
+    padding:20px;
+}
+
+.card{
+    background:#161b22;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.btn{
+    display:inline-block;
+    padding:10px 15px;
+    background:#238636;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    margin-top:10px;
+}
+
+.logout-btn{
+    background:red;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="login-page" id="loginPage">
+    <div class="login-box">
+        <h2>Gowtham Dashboard Login</h2>
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button onclick="login()">Login</button>
+
+        <p id="error" style="color:red;margin-top:10px;"></p>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<header>
+    <h1>Welcome Gowtham</h1>
+
+    <nav>
+        <a href="#projects">Projects</a>
+        <a href="#github">GitHub</a>
+        <a href="#skills">Skills</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <br>
+
+    <button class="btn logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<div class="container">
+
+    <!-- PROJECTS -->
+    <div class="card" id="projects">
+        <h2>Cybersecurity Projects</h2>
+
+        <ul>
+            <li>Port Scanner</li>
+            <li>APK Malware Analyzer</li>
+            <li>Network Scanner</li>
+            <li>Password Strength Checker</li>
+        </ul>
+    </div>
+
+    <!-- GITHUB -->
+    <div class="card" id="github">
+        <h2>GitHub</h2>
+
+        <p>View My GitHub Profile:</p>
+
+        <a class="btn"
+        href="https://github.com/GOWTHAM9968"
+        target="_blank">
+        Open GitHub
+        </a>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="card" id="skills">
+        <h2>Skills</h2>
+
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Git & GitHub</li>
+            <li>Cybersecurity</li>
+        </ul>
+    </div>
+
+    <!-- RESUME -->
+    <div class="card" id="resume">
+        <h2>Resume</h2>
+
+        <p>Add your resume.pdf file later.</p>
+
+        <a class="btn" href="#">
+        Download Resume
+        </a>
+    </div>
+
+    <!-- LEARNING -->
+    <div class="card">
+        <h2>Learning Tracker</h2>
+
+        <ul>
+            <li>Day 1 - GitHub Profile Update</li>
+            <li>Day 2 - Portfolio Development</li>
+            <li>Day 3 - JavaScript Practice</li>
+            <li>Day 4 - Cybersecurity Lab</li>
+        </ul>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="card" id="contact">
+        <h2>Contact</h2>
+
+        <p>Email: yourmail@example.com</p>
+
+        <p>LinkedIn: Add Later</p>
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+const savedLogin = localStorage.getItem("loggedIn");
+
+if(savedLogin === "true"){
+    showDashboard();
+}
+
+function login(){
+
+    const password =
+    document.getElementById("password").value;
+
+    if(password === "gowtham123"){
+
+        localStorage.setItem("loggedIn","true");
+
+        showDashboard();
+
+    }else{
+
+        document.getElementById("error").innerText =
+        "Wrong Password";
+
+    }
+}
+
+function showDashboard(){
+
+    document.getElementById("loginPage").style.display = "none";
+
+    document.getElementById("dashboard").style.display = "block";
+}
+
+function logout(){
+
+    localStorage.removeItem("loggedIn");
+
+    location.reload();
+}
+</script>
+
+</body>
+</html>
